@@ -33,6 +33,14 @@ const run = async () => {
       res.send(fruits);
     });
 
+    app.post("/inventory", async (req, res) => {
+      const newItem = req.body;
+      console.log("adding new item", newItem);
+      const result = await fruitsCollection.insertOne(newItem);
+      console.log("added in mogodb");
+      res.send({ dataRecieved: "success" });
+    });
+
     app.get("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
