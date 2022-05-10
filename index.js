@@ -57,17 +57,18 @@ const run = async () => {
 
     app.put("/inventory/:id", async (req, res) => {
       const id = req.params.id;
-      const newQuantity = req.body;
+      const update = req.body;
       const filter = { _id: ObjectId(id) };
       const options = { upsert: true };
-      const updateQuantity = {
+      const updateDB = {
         $set: {
-          quantity: newQuantity.quantity,
+          quantity: update.quantity,
+          delivered: update.delivered,
         },
       };
       const result = await fruitsCollection.updateOne(
         filter,
-        updateQuantity,
+        updateDB,
         options
       );
       res.send(result);
