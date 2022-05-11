@@ -93,6 +93,12 @@ const run = async () => {
       const result = await fruitsCollection.findOne(query);
       res.send(result);
     });
+    app.get("/myitems/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await myItemsCollection.findOne(query);
+      res.send(result);
+    });
 
     app.delete("/inventory/:id", async (req, res) => {
       const id = req.params.id;
