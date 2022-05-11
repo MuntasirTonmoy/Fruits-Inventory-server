@@ -132,6 +132,25 @@ const run = async () => {
       );
       res.send(result);
     });
+
+    app.put("/myitems/:id", async (req, res) => {
+      const id = req.params.id;
+      const update = req.body;
+      const filter = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updateDB = {
+        $set: {
+          quantity: update.quantity,
+          delivered: update.delivered,
+        },
+      };
+      const result = await fruitsCollection.updateOne(
+        filter,
+        updateDB,
+        options
+      );
+      res.send(result);
+    });
   } finally {
   }
 };
