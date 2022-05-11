@@ -144,7 +144,7 @@ const run = async () => {
           delivered: update.delivered,
         },
       };
-      const result = await fruitsCollection.updateOne(
+      const result = await myItemsCollection.updateOne(
         filter,
         updateDB,
         options
