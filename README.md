@@ -2,9 +2,9 @@
 
 Fruits inventory and management website
 
-## Live Website Link
+## Live Server App Link
 
-[https://fruits-inventory-b52d3.web.app/](https://fruits-inventory-b52d3.web.app/)
+[https://polar-lowlands-01561.herokuapp.com/](https://polar-lowlands-01561.herokuapp.com/)
 
 ## Features
 
