@@ -50,7 +50,7 @@ const run = async () => {
     app.post("/login", async (req, res) => {
       const user = req.body;
       const token = jwt.sign(user, process.env.SECRET_ACCESS_TOKEN, {
-        expiresIn: "1d",
+        expiresIn: "15d",
       });
       res.send({ token });
     });
@@ -130,7 +130,8 @@ const run = async () => {
         updateDB,
         options
       );
-      res.send(result);
+      const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET);
+      res.send(result, token);
     });
 
     app.put("/myitems/:id", async (req, res) => {
