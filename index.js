@@ -19,7 +19,7 @@ const verifyToken = (req, res, next) => {
     return res.status(401).send({ message: "Unauthorized access" });
   }
   const token = header.split(" ")[1];
-  jwt.verify(token, process.env.SECRET_ACCESS_TOKEN, (err, decoded) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).send({ message: "Access denied" });
     }
@@ -49,9 +49,7 @@ const run = async () => {
     //jwt
     app.post("/login", async (req, res) => {
       const user = req.body;
-      const token = jwt.sign(user, process.env.SECRET_ACCESS_TOKEN, {
-        expiresIn: "15d",
-      });
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
       res.send({ token });
     });
 
