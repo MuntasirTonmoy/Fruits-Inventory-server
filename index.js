@@ -81,6 +81,7 @@ const run = async () => {
         updateDB,
         options
       );
+      res.send(result);
       /* const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET);
       res.send(result, token); */
     });
@@ -93,7 +94,7 @@ const run = async () => {
     });
 
     app.get("/myitems/:email", async (req, res) => {
-      const email = req.query.email;
+      const email = req.params.email;
       const query = { email: email };
       const cursor = fruitsCollection.find(query);
       const myItems = await cursor.toArray();
