@@ -37,7 +37,17 @@ const client = new MongoClient(uri, {
 
 const run = async () => {
   try {
-    await client.connect();
+    await client.connect(err => {
+      if (err) {
+        console.error(err);
+        return false;
+      }
+      // connection to mongo is successful, listen for requests
+      app.listen(port, () => {
+        console.log("listening for requests");
+      });
+    });
+
     const fruitsCollection = client
       .db("fruitsInventory")
       .collection("fruitsCollection");
